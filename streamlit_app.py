@@ -10,6 +10,26 @@ if csv_file is not None:
 else:
     df = pd.DataFrame()
 
+
+selected_columns = st.multiselect("Select Columns", list(df.columns), default=list(df.columns))
+
+# Deselect all columns if user clicks a button
+if st.button("Deselect All Columns"):
+    selected_columns = []
+
+# Display selected columns
+st.write("Selected Columns:", selected_columns)
+
+# Display the loaded dataset with selected columns
+selected_data = df[selected_columns]
+st.write("Loaded Dataset:")
+st.write(selected_data)
+
+# Display descriptive statistics
+if len(selected_columns) > 0:
+    st.write("Descriptive Statistics:")
+    st.write(selected_data.describe())
+
 # Available datasets
 # available_datasets = available_datasets = {
 #     "Dataset 1": pd.DataFrame({
@@ -22,25 +42,27 @@ else:
 #     "Dataset 2": pd.DataFrame({"Column A": ['a', 'b', 'c'], "Column B": ['d', 'e', 'f'], "Column C": ['g', 'h', 'i']}),
 # }
 
-available_datasets = df
+# available_datasets = df
 
-# Select dataset
-selected_dataset = st.sidebar.selectbox("Select Dataset", list(available_datasets.keys()))
+# # Select dataset
+# selected_dataset = st.sidebar.selectbox("Select Dataset", list(available_datasets.keys()))
 
-# Select columns from the selected dataset
-selected_columns = st.multiselect("Select Columns", list(available_datasets[selected_dataset].columns), default=list(available_datasets[selected_dataset].columns))
+# # Select columns from the selected dataset
+# selected_columns = st.multiselect("Select Columns", list(available_datasets[selected_dataset].columns), default=list(available_datasets[selected_dataset].columns))
 
-# Deselect all columns if user clicks a button
-if st.button("Deselect All Columns"):
-    selected_columns = []
+# # Deselect all columns if user clicks a button
+# if st.button("Deselect All Columns"):
+#     selected_columns = []
 
-# Display selected columns
-st.write("Selected Columns:", selected_columns)
+# # Display selected columns
+# st.write("Selected Columns:", selected_columns)
 
-# Display the selected dataset with selected columns
-st.write("Selected Dataset:")
-st.write(available_datasets[selected_dataset][selected_columns])
+# # Display the selected dataset with selected columns
+# st.write("Selected Dataset:")
+# st.write(available_datasets[selected_dataset][selected_columns])
 
-if len(selected_columns) > 0:
-    st.write("Descriptive Statistics:")
-    st.write(selected_data.describe())
+# if len(selected_columns) > 0:
+#     st.write("Descriptive Statistics:")
+#     st.write(selected_data.describe())
+
+
