@@ -3,8 +3,11 @@ import pandas as pd
 
 # Available datasets
 available_datasets = {
-    "Dataset 1": pd.DataFrame({"Column 1": [1, 2, 3], "Column 2": [4, 5, 6], "Column 3": [7, 8, 9]}),
-    "Dataset 2": pd.DataFrame({"Column A": ['a', 'b', 'c'], "Column B": ['d', 'e', 'f'], "Column C": ['g', 'h', 'i']}),
+    'Column 1': [1, 2, np.nan, 4, 5, 6, 7, 8, np.nan, 10],
+    'Column 2': ['a', 'b', 'c', 'd', np.nan, 'f', 'g', np.nan, 'i', 'j'],
+    'Column 3': [True, False, True, np.nan, True, False, np.nan, True, False, True],
+    'Column 4': [0.1, 0.2, 0.3, np.nan, 0.5, np.nan, 0.7, 0.8, 0.9, 1.0],
+    'Column 5': ['text', 'data', 'science', 'with', 'null', 'values', 'in', 'some', 'entries', 'too']
 }
 
 # Select dataset
