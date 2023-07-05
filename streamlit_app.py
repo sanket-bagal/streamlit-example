@@ -34,9 +34,9 @@ if len(selected_columns) > 0:
 
 univariate_columns = st.multiselect("Select Columns for Univariate Analysis", selected_columns)
 
-if len(selected_columns) > 0:
+if len(univariate_columns) > 0:
     st.write("Univariate Analysis:")
-    for column in selected_columns:
+    for column in univariate_columns:
         st.subheader(f"Column: {column}")
         st.write("Value Counts:")
         st.write(selected_data[column].value_counts())
@@ -49,14 +49,13 @@ if len(selected_columns) > 0:
 bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
 
 # Perform bivariate analysis
-if len(selected_columns) > 1:
+if len(bivariate_columns) > 1:
     st.write("Bivariate Analysis:")
-    selected_columns_pair = st.multiselect("Select Columns for Pairplot", selected_columns)
-    if len(selected_columns_pair) > 1:
-        st.write("Pairplot:")
-        plt.figure(figsize=(10, 8))
-        sns.pairplot(data=selected_data, vars=selected_columns_pair)
-        st.pyplot(plt)
+    st.write("Pairplot:")
+    pairplot_data = selected_data[bivariate_columns]
+    plt.figure(figsize=(10, 8))
+    sns.pairplot(data=pairplot_data)
+    st.pyplot(plt)
 
 # Available datasets
 # available_datasets = available_datasets = {
