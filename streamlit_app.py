@@ -32,6 +32,7 @@ if len(selected_columns) > 0:
     st.write("Descriptive Statistics:")
     st.write(selected_data.describe())
 
+univariate_columns = st.multiselect("Select Columns for Univariate Analysis", selected_columns)
 
 if len(selected_columns) > 0:
     st.write("Univariate Analysis:")
@@ -44,6 +45,8 @@ if len(selected_columns) > 0:
         plt.figure(figsize=(8, 6))
         sns.histplot(data=selected_data, x=column, kde=True)
         st.pyplot(plt)
+
+bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
 
 # Perform bivariate analysis
 if len(selected_columns) > 1:
