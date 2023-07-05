@@ -11,7 +11,7 @@ available_datasets = available_datasets = {
     'Column 4': [0.1, 0.2, 0.3, np.nan, 0.5, np.nan, 0.7, 0.8, 0.9, 1.0],
     'Column 5': ['text', 'data', 'science', 'with', 'null', 'values', 'in', 'some', 'entries', 'too']
 }),
-    "Dataset 2": pd.DataFrame({"Column A": ['a', 'b', 'c'], "Column B": ['d', 'e', 'f'], "Column C": ['g', 'h', 'i']})),
+    "Dataset 2": pd.DataFrame({"Column A": ['a', 'b', 'c'], "Column B": ['d', 'e', 'f'], "Column C": ['g', 'h', 'i']}),
 }
 
 # Select dataset
