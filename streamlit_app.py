@@ -1,38 +1,25 @@
-from collections import namedtuple
-import altair as alt
-import math
-import pandas as pd
 import streamlit as st
+import pandas as pd
 
-"""
-# Welcome to Streamlit!
+# Available datasets
+available_datasets = {
+    "Dataset 1": pd.DataFrame({"Column 1": [1, 2, 3], "Column 2": [4, 5, 6], "Column 3": [7, 8, 9]}),
+    "Dataset 2": pd.DataFrame({"Column A": ['a', 'b', 'c'], "Column B": ['d', 'e', 'f'], "Column C": ['g', 'h', 'i']}),
+}
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+# Select dataset
+selected_dataset = st.sidebar.selectbox("Select Dataset", list(available_datasets.keys()))
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+# Select columns from the selected dataset
+selected_columns = st.multiselect("Select Columns", list(available_datasets[selected_dataset].columns), default=list(available_datasets[selected_dataset].columns))
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+# Deselect all columns if user clicks a button
+if st.button("Deselect All Columns"):
+    selected_columns = []
 
+# Display selected columns
+st.write("Selected Columns:", selected_columns)
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
-
-    Point = namedtuple('Point', 'x y')
-    data = []
-
-    points_per_turn = total_points / num_turns
-
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
-
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+# Display the selected dataset with selected columns
+st.write("Selected Dataset:")
+st.write(available_datasets[selected_dataset][selected_columns])
