@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 csv_file = st.sidebar.file_uploader("Upload CSV", type="csv")
 
@@ -29,6 +31,29 @@ st.write(selected_data)
 if len(selected_columns) > 0:
     st.write("Descriptive Statistics:")
     st.write(selected_data.describe())
+
+
+if len(selected_columns) > 0:
+    st.write("Univariate Analysis:")
+    for column in selected_columns:
+        st.subheader(f"Column: {column}")
+        st.write("Value Counts:")
+        st.write(selected_data[column].value_counts())
+
+        st.write("Histogram:")
+        plt.figure(figsize=(8, 6))
+        sns.histplot(data=selected_data, x=column, kde=True)
+        st.pyplot(plt)
+
+# Perform bivariate analysis
+if len(selected_columns) > 1:
+    st.write("Bivariate Analysis:")
+    selected_columns_pair = st.multiselect("Select Columns for Pairplot", selected_columns)
+    if len(selected_columns_pair) > 1:
+        st.write("Pairplot:")
+        plt.figure(figsize=(10, 8))
+        sns.pairplot(data=selected_data, vars=selected_columns_pair)
+        st.pyplot(plt)
 
 # Available datasets
 # available_datasets = available_datasets = {
