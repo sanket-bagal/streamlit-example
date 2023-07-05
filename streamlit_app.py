@@ -30,3 +30,7 @@ st.write("Selected Columns:", selected_columns)
 # Display the selected dataset with selected columns
 st.write("Selected Dataset:")
 st.write(available_datasets[selected_dataset][selected_columns])
+
+if len(selected_columns) > 0:
+    st.write("Descriptive Statistics:")
+    st.write(selected_data.describe())
