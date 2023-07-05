@@ -6,7 +6,7 @@ csv_file = st.sidebar.file_uploader("Upload CSV", type="csv")
 
 # Load dataset from CSV file
 if csv_file is not None:
-    df = pd.read_csv(payments_churn_data)
+    df = pd.read_csv(csv_file)
 else:
     df = pd.DataFrame()
 
