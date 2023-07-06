@@ -110,8 +110,9 @@ if len(bivariate_columns) > 1:
 
 
 if st.button("Launch D-Tale"):
-        dtale_app = dtale.show(df)
-        dtale_app.open_browser()
+    #dtale_app = dtale.show(df)
+    #dtale_app.open_browser()
+    dtale.show(df, notebook=True)
 
 
 
