@@ -3,10 +3,6 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-import dtale
-import webbrowser
-import tempfile
-#import subprocess
 
 csv_file = st.sidebar.file_uploader("Upload CSV", type="csv")
 
@@ -110,32 +106,6 @@ if len(bivariate_columns) > 1:
     sns.heatmap(pairplot_data.corr(), annot=True, cmap="coolwarm", square=True)
     st.pyplot(plt)
 
-
-# if st.button("Launch D-Tale"):
-#     #dtale_app = dtale.show(df)
-#     #dtale_app.open_browser()
-#     dtale.show(df, notebook=True)
-
-if st.button("Launch D-Tale"):
-        with tempfile.NamedTemporaryFile(suffix=".html") as temp_file:
-            dtale.show(df, outfile=temp_file.name, open_browser=False)
-            webbrowser.open_new_tab(f"file://{temp_file.name}")
-
-
-
-
-# Launch dtale on button click
-# if st.button("Launch dtale"):
-#         # Start dtale server process
-#     cmd = ["dtale", "--open-browser", "no"]
-#     dtale_process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-#         # Get the dtale server URL
-#     server_url = dtale_process.stdout.readline().decode("utf-8").strip()
-
-#         # Display dtale dashboard in iframe
-#     st.write("dtale Dashboard:")
-#     st.write(f'<iframe src="{server_url}" width="1000" height="600"></iframe>', unsafe_allow_html=True)
 
 # Available datasets
 # available_datasets = available_datasets = {
