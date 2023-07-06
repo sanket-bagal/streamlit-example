@@ -109,10 +109,15 @@ if len(bivariate_columns) > 1:
     st.pyplot(plt)
 
 
+# if st.button("Launch D-Tale"):
+#     #dtale_app = dtale.show(df)
+#     #dtale_app.open_browser()
+#     dtale.show(df, notebook=True)
+
 if st.button("Launch D-Tale"):
-    #dtale_app = dtale.show(df)
-    #dtale_app.open_browser()
-    dtale.show(df, notebook=True)
+        with tempfile.NamedTemporaryFile(suffix=".html") as temp_file:
+            dtale.show(df, outfile=temp_file.name, open_browser=False)
+            webbrowser.open_new_tab(f"file://{temp_file.name}")
 
 
 
