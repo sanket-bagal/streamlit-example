@@ -102,6 +102,11 @@ if len(bivariate_columns) > 1:
     plt.figure(figsize=(10, 8))
     sns.pairplot(data=pairplot_data)
     st.pyplot(plt)
+    
+    st.write("Correlation Heatmap:")
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(pairplot_data.corr(), annot=True, cmap="coolwarm", square=True)
+    st.pyplot(plt)
 
 # Available datasets
 # available_datasets = available_datasets = {
