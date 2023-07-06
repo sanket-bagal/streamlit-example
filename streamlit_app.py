@@ -4,6 +4,8 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import dtale
+import webbrowser
+import tempfile
 #import subprocess
 
 csv_file = st.sidebar.file_uploader("Upload CSV", type="csv")
