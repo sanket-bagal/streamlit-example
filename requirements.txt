@@ -4,6 +4,3 @@ streamlit
 numpy
 matplotlib
 seaborn
-dtale
-tempfile
-webbrowser
