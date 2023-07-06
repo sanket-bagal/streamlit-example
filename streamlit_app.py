@@ -107,7 +107,8 @@ if len(bivariate_columns) > 1:
     sns.heatmap(pairplot_data.corr(), annot=True, cmap="coolwarm", square=True)
     st.pyplot(plt)
 
-dtale.show(df)
+if st.button('Launch dtale'):
+    dtale.show(df)
 
 # Available datasets
 # available_datasets = available_datasets = {
