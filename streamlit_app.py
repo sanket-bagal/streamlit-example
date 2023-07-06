@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+import dtale
 
 csv_file = st.sidebar.file_uploader("Upload CSV", type="csv")
 
@@ -31,8 +32,6 @@ st.write(selected_data)
 if len(selected_columns) > 0:
     st.write("Descriptive Statistics:")
     st.write(selected_data.describe())
-
-
 
 # for column in selected_columns:
 #     st.subheader(f"Column: {column}")
@@ -107,6 +106,8 @@ if len(bivariate_columns) > 1:
     plt.figure(figsize=(10, 8))
     sns.heatmap(pairplot_data.corr(), annot=True, cmap="coolwarm", square=True)
     st.pyplot(plt)
+
+dtale.show(df)
 
 # Available datasets
 # available_datasets = available_datasets = {
