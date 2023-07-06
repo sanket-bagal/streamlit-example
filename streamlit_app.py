@@ -34,74 +34,74 @@ if len(selected_columns) > 0:
 
 
 
-for column in selected_columns:
-    st.subheader(f"Column: {column}")
+# for column in selected_columns:
+#     st.subheader(f"Column: {column}")
     
-    # Check if variable is continuous or categorical
-    if selected_data[column].dtype == 'object' or len(selected_data[column].unique()) <= 10:
-        # Categorical variable
-        st.write("Variable Type: Categorical")
+#     # Check if variable is continuous or categorical
+#     if selected_data[column].dtype == 'object' or len(selected_data[column].unique()) <= 10:
+#         # Categorical variable
+#         st.write("Variable Type: Categorical")
         
-        # Univariate analysis
-        st.write("Value Counts:")
-        st.write(selected_data[column].value_counts())
-        
-        # Bivariate analysis
-        bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
-        if len(bivariate_columns) > 0:
-            st.write("Bivariate Analysis:")
-            for bivariate_column in bivariate_columns:
-                if bivariate_column != column:
-                    st.subheader(f"Bivariate Analysis with {bivariate_column}")
-                    cross_tab = pd.crosstab(selected_data[column], selected_data[bivariate_column])
-                    st.write(cross_tab)
-    else:
-        # Continuous variable
-        st.write("Variable Type: Continuous")
-        
-        # Univariate analysis
-        st.write("Histogram:")
-        plt.figure(figsize=(8, 6))
-        sns.histplot(data=selected_data, x=column, kde=True)
-        st.pyplot(plt)
-        
-        # Bivariate analysis
-        bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
-        if len(bivariate_columns) > 0:
-            st.write("Bivariate Analysis:")
-            for bivariate_column in bivariate_columns:
-                if bivariate_column != column:
-                    st.subheader(f"Bivariate Analysis with {bivariate_column}")
-                    plt.figure(figsize=(8, 6))
-                    sns.boxplot(data=selected_data, x=bivariate_column, y=column)
-                    st.pyplot(plt)
-
-
-
-# univariate_columns = st.multiselect("Select Columns for Univariate Analysis", selected_columns)
-
-# if len(univariate_columns) > 0:
-#     st.write("Univariate Analysis:")
-#     for column in univariate_columns:
-#         st.subheader(f"Column: {column}")
+#         # Univariate analysis
 #         st.write("Value Counts:")
 #         st.write(selected_data[column].value_counts())
-
+        
+#         # Bivariate analysis
+#         bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
+#         if len(bivariate_columns) > 0:
+#             st.write("Bivariate Analysis:")
+#             for bivariate_column in bivariate_columns:
+#                 if bivariate_column != column:
+#                     st.subheader(f"Bivariate Analysis with {bivariate_column}")
+#                     cross_tab = pd.crosstab(selected_data[column], selected_data[bivariate_column])
+#                     st.write(cross_tab)
+#     else:
+#         # Continuous variable
+#         st.write("Variable Type: Continuous")
+        
+#         # Univariate analysis
 #         st.write("Histogram:")
 #         plt.figure(figsize=(8, 6))
 #         sns.histplot(data=selected_data, x=column, kde=True)
 #         st.pyplot(plt)
+        
+#         # Bivariate analysis
+#         bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
+#         if len(bivariate_columns) > 0:
+#             st.write("Bivariate Analysis:")
+#             for bivariate_column in bivariate_columns:
+#                 if bivariate_column != column:
+#                     st.subheader(f"Bivariate Analysis with {bivariate_column}")
+#                     plt.figure(figsize=(8, 6))
+#                     sns.boxplot(data=selected_data, x=bivariate_column, y=column)
+#                     st.pyplot(plt)
 
-# bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
 
-# # Perform bivariate analysis
-# if len(bivariate_columns) > 1:
-#     st.write("Bivariate Analysis:")
-#     st.write("Pairplot:")
-#     pairplot_data = selected_data[bivariate_columns]
-#     plt.figure(figsize=(10, 8))
-#     sns.pairplot(data=pairplot_data)
-#     st.pyplot(plt)
+
+univariate_columns = st.multiselect("Select Columns for Univariate Analysis", selected_columns)
+
+if len(univariate_columns) > 0:
+    st.write("Univariate Analysis:")
+    for column in univariate_columns:
+        st.subheader(f"Column: {column}")
+        st.write("Value Counts:")
+        st.write(selected_data[column].value_counts())
+
+        st.write("Histogram:")
+        plt.figure(figsize=(8, 6))
+        sns.histplot(data=selected_data, x=column, kde=True)
+        st.pyplot(plt)
+
+bivariate_columns = st.multiselect("Select Columns for Bivariate Analysis", selected_columns)
+
+# Perform bivariate analysis
+if len(bivariate_columns) > 1:
+    st.write("Bivariate Analysis:")
+    st.write("Pairplot:")
+    pairplot_data = selected_data[bivariate_columns]
+    plt.figure(figsize=(10, 8))
+    sns.pairplot(data=pairplot_data)
+    st.pyplot(plt)
 
 # Available datasets
 # available_datasets = available_datasets = {
